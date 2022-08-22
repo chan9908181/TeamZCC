@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">TeamZCC</string>
+    <string name="app_name">Squares</string>
+    <string name="welcome">Hello Zexin , Christina and Chan!</string>
 </resources>
