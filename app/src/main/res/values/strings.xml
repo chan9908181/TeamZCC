@@ -17,5 +17,24 @@
     <string name="rightArrow"><![CDATA[->]]></string>
     <string name="leftArrow"><![CDATA[<-]]></string>
 
+    <!--Strings for preset scroll bar-->
+    <string name="newPreset">+New Preset+</string>
+    <!--Strings for preset editor popup-->
+    <string name="activityHint">Enter activity/event/…</string>
+    <string name="colorDescription">Choose a color for your activity/event</string>
+    <string-array name="availableColors">
+        <item>Blue</item>
+        <item>Green</item>
+        <item>Red</item>
+        <item>Yellow</item>
+        <item>Orange</item>
+    </string-array>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+
+
+
+
+
 
 </resources>
