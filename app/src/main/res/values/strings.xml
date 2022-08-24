@@ -7,6 +7,15 @@
     <string name="title_statistics">Statistics</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="sun">SUN</string>
+    <string name="mon">MON</string>
+    <string name="tue">TUE</string>
+    <string name="wed">WED</string>
+    <string name="thr">THR</string>
+    <string name="fri">FRI</string>
+    <string name="sat">SAT</string>
+    <string name="rightArrow"><![CDATA[->]]></string>
+    <string name="leftArrow"><![CDATA[<-]]></string>
 
 
 </resources>
