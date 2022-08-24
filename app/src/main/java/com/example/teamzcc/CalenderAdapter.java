@@ -23,7 +23,7 @@ public class CalenderAdapter extends RecyclerView.Adapter<CalenderViewHolder> {
     @Override
     public CalenderViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         //this creates the calender holder, we need the holder because it saves the view that we do not have to always create a new view when we are zooming in and out
-        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());//Instantiates a layout XML file into its corresponding View objects
         View view = inflater.inflate(R.layout.calender_cell, parent, false);
         ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
         layoutParams.height = (int) (parent.getHeight() * 0.1666666);//our height of each boxes are one sixth of the whole phone, we can modulate and change it
@@ -32,7 +32,7 @@ public class CalenderAdapter extends RecyclerView.Adapter<CalenderViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull CalenderViewHolder holder, int position) {
-        //set the text of each month
+        //set the text of each month to display the data at the specified position, we use this method to update the view.
         holder.dayOfMonth.setText(daysOfMonth.get(position));
 
     }

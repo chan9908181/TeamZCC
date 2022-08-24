@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements CalenderAdapter.o
         });
     }
 
+    //calender View Methods
     private void initWidgets() {
         //find our views with the ID
         calenderRecycleView = findViewById(R.id.calenderRecyclerView);
@@ -84,11 +85,13 @@ public class MainActivity extends AppCompatActivity implements CalenderAdapter.o
         CalenderAdapter calenderAdapter = new CalenderAdapter(daysInMonth, this);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 7);//our calender has 7 grids
         calenderRecycleView.setLayoutManager(layoutManager);
+        //here the layoutmanager would automatically place our dates in to a 7 coulom calender
         calenderRecycleView.setAdapter(calenderAdapter);
 
     }
 
     private ArrayList<String> daysInMonthArray(LocalDate date) {
+        //create the string array of each blank and dates of a month
         ArrayList<String> daysInMonth = new ArrayList<>();
         YearMonth yearMonth = YearMonth.from(date);
 
@@ -126,6 +129,7 @@ public class MainActivity extends AppCompatActivity implements CalenderAdapter.o
         String message = "Selected Date" + dayText + "" + monthYearFromDate(selectedDate);
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();//TODO//
     }
+
 
     //Preset related stuff below
     //creates preset editor and handles events that are delivered back
