@@ -44,14 +44,14 @@ public class MainActivity extends AppCompatActivity implements CalenderAdapter.o
     //current display density
     private float DENSITY;
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initWidgets();
         selectedDate = LocalDate.now();//set the local date as now
-
+        setMonthView();
         //populates the preset bar on create, needs a permanent mean of storage in the future
         DENSITY = getApplicationContext()
                 .getResources()
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements CalenderAdapter.o
         CalenderAdapter calenderAdapter = new CalenderAdapter(daysInMonth, this);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 7);//our calender has 7 grids
         calenderRecycleView.setLayoutManager(layoutManager);
-        //here the layoutmanager would automatically place our dates in to a 7 coulom calender
+        //here the layoutmanager would automatically place our dates in to a 7 column calender
         calenderRecycleView.setAdapter(calenderAdapter);
 
     }
@@ -126,8 +126,9 @@ public class MainActivity extends AppCompatActivity implements CalenderAdapter.o
 
     @Override
     public void onItemClick(int position, String dayText) {
+        //implement a function where we can zoom in for each date.
         String message = "Selected Date" + dayText + "" + monthYearFromDate(selectedDate);
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();//TODO//
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();//TODO//set the schedule
     }
 
 

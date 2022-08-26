@@ -26,7 +26,7 @@ public class CalenderAdapter extends RecyclerView.Adapter<CalenderViewHolder> {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());//Instantiates a layout XML file into its corresponding View objects
         View view = inflater.inflate(R.layout.calender_cell, parent, false);
         ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
-        layoutParams.height = (int) (parent.getHeight() * 0.1666666);//our height of each boxes are one sixth of the whole phone, we can modulate and change it
+        layoutParams.height = (int) (parent.getHeight() * 0.16666666);//our height of each boxes are one sixth of the whole phone, we can modulate and change it
         return new CalenderViewHolder(view, onItemListener);
     }
 
