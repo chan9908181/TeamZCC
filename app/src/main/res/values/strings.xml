@@ -20,7 +20,6 @@
     <string name="delete">Delete</string>
 
 
-
     <!--Strings for preset scroll bar-->
     <string name="newPreset">+New Preset+</string>
     <!--Strings for preset editor popup-->
@@ -35,28 +34,35 @@
     </string-array>
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_fragment">Fragment</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <!--    <color name="red">#FF0000</color>-->
+    <!--    <color name="orange">#FF7F00</color>-->
+    <!--    <color name="yellow">#FFFF00</color>-->
+    <!--    <color name="chartreuse">#7FFF00</color>-->
+    <!--    <color name="green">#00FF00</color>-->
+    <!--    <color name="spring_green">#00FF7F</color>-->
+    <!--    <color name="cyan">#00FFFF</color>-->
+    <!--    <color name="azure">#007FFF</color>-->
+    <!--    <color name="blue">#0000FF</color>-->
+    <!--    <color name="violet">#7F00FF</color>-->
+    <!--    <color name="magenta">#FF00FF</color>-->
+    <!--    <array name="availableColors">-->
+    <!--        <item>@color/red</item>-->
+    <!--        <item>@color/green</item>-->
+    <!--        <item>@color/blue</item>-->
+    <!--        <item>@color/yellow</item>-->
+    <!--        <item>@color/orange</item>-->
+    <!--    </array>-->
 
-<!--    <color name="red">#FF0000</color>-->
-<!--    <color name="orange">#FF7F00</color>-->
-<!--    <color name="yellow">#FFFF00</color>-->
-<!--    <color name="chartreuse">#7FFF00</color>-->
-<!--    <color name="green">#00FF00</color>-->
-<!--    <color name="spring_green">#00FF7F</color>-->
-<!--    <color name="cyan">#00FFFF</color>-->
-<!--    <color name="azure">#007FFF</color>-->
-<!--    <color name="blue">#0000FF</color>-->
-<!--    <color name="violet">#7F00FF</color>-->
-<!--    <color name="magenta">#FF00FF</color>-->
-<!--    <array name="availableColors">-->
-<!--        <item>@color/red</item>-->
-<!--        <item>@color/green</item>-->
-<!--        <item>@color/blue</item>-->
-<!--        <item>@color/yellow</item>-->
-<!--        <item>@color/orange</item>-->
-<!--    </array>-->
-
-
-
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
 
 </resources>

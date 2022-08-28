@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TeamZCC">
         <activity
+            android:name=".Social"
+            android:exported="false" />
+        <activity
+            android:name=".Statistics"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

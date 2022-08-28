@@ -1,12 +1,17 @@
 package com.example.teamzcc;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,9 +22,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.teamzcc.calender.CalenderAdapter;
+import com.example.teamzcc.databinding.ActivityMainBinding;
 import com.example.teamzcc.preset.EditPresetDialogFragment;
 import com.example.teamzcc.preset.Preset;
 import com.example.teamzcc.preset.PresetAdapter;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
@@ -44,6 +52,8 @@ public class MainActivity extends AppCompatActivity implements CalenderAdapter.o
     //current display density
     private float DENSITY;
 
+    ActivityMainBinding binding;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,9 +71,46 @@ public class MainActivity extends AppCompatActivity implements CalenderAdapter.o
         presets.add(new Preset("Shopping at Lidl", "green"));
         presets.add(new Preset("weird", "teal"));
 
-
         setPresetBar();
+
+        //changing between activities in navigation bar
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_nav_bar);
+        bottomNavigationView.setSelectedItemId(R.id.navigation_calendar);
+
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.navigation_statistics:
+                        startActivity(new Intent(getApplicationContext(), Statistics.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.navigation_calendar:
+                        return true;
+
+                    case R.id.navigation_social:
+                        startActivity(new Intent(getApplicationContext(), Social.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+
+                return false;
+            }
+
+        });
     }
+
+
+    //for fragments in switching between the bottom nagivation bars
+    private void replaceFragment(Fragment fragment){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.linearLayout2, fragment);
+        fragmentTransaction.commit();
+
+    }
+
+
 
     //calender View Methods
     private void initWidgets() {
