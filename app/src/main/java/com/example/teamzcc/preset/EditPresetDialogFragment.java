@@ -1,8 +1,9 @@
-package com.example.teamzcc;
+package com.example.teamzcc.preset;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,15 +15,19 @@ import android.widget.Spinner;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
+import com.example.teamzcc.R;
+
 public class EditPresetDialogFragment extends DialogFragment {
     public Preset tempPreset;
 
     //Interface required to pass the event in the dialog back to its host
     // https://developer.android.com/guide/topics/ui/dialogs#PassingEvents
     public interface EditPresetDialogListener {
-        public void onPresetCancelClick(EditPresetDialogFragment dialog);
-        public void onPresetSaveClick(EditPresetDialogFragment dialog);
+        public void onPresetEditorCancelClick(EditPresetDialogFragment dialog);
+
+        public void onPresetEditorSaveClick(EditPresetDialogFragment dialog);
     }
+
     // Use this instance of the interface to deliver action events
     EditPresetDialogListener listener;
 
@@ -46,39 +51,44 @@ public class EditPresetDialogFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-        //creates the view for the dialog popup window
+        //creates the view for the popup window
         LayoutInflater inflater = this.getLayoutInflater();
-        final View presetEditorView = inflater.inflate(R.layout.activity_edit_preset, null);
+        View presetEditorView = inflater.inflate(R.layout.dialogue_edit_preset, null);
         builder.setView(presetEditorView);
 
-        //populates the dropdown menu for colors
+        //populates the dropdown menu of colors
         Spinner presetColorMenu = presetEditorView.findViewById(R.id.presetColorMenu);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getContext(), R.array.availableColors, android.R.layout.simple_dropdown_item_1line);
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         presetColorMenu.setAdapter(adapter);
 
+        //set values according to the current preset if the editor is called on a existing preset
+        if (savedInstanceState!=null && savedInstanceState.hasFileDescriptors()) {
+            ((EditText) getActivity().findViewById(R.id.editTextActivityName)).setText(savedInstanceState.getString("activity"));
+            presetColorMenu.setSelection(adapter.getPosition(savedInstanceState.getString("color")));
+        }
+
         //Buttons' functionality
         Button cancelButton = (Button) presetEditorView.findViewById(R.id.buttonCancel);
         Button saveButton = (Button) presetEditorView.findViewById(R.id.buttonSave);
         //Save -> save and send back the specified preset
-        saveButton.setOnClickListener(new View.OnClickListener(){
+        saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String tempName = ((EditText) presetEditorView.findViewById(R.id.editTextActivityName)).getText().toString();
                 String tempColor = ((Spinner) presetEditorView.findViewById(R.id.presetColorMenu)).getSelectedItem().toString();
                 tempPreset = new Preset(tempName, tempColor);
-                listener.onPresetSaveClick(EditPresetDialogFragment.this);
+                listener.onPresetEditorSaveClick(EditPresetDialogFragment.this);
             }
         });
-        cancelButton.setOnClickListener(new View.OnClickListener(){
+        cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                listener.onPresetCancelClick(EditPresetDialogFragment.this);
+                listener.onPresetEditorCancelClick(EditPresetDialogFragment.this);
             }
         });
 
         return builder.create();
-
     }
 }

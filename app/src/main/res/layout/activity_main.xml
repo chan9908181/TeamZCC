@@ -171,23 +171,41 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calenderRecyclerView">
 
-        <LinearLayout
-            android:id="@+id/presetTopRow"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:paddingTop="10dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingBottom="10dp">
 
-            <Button
-                android:id="@+id/addPreset"
-                android:layout_width="150dp"
-                android:layout_height="50dp"
-                android:text="@string/newPreset" />
-        </LinearLayout>
+        <!--        <LinearLayout-->
+        <!--            android:id="@+id/presetTopRow"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:orientation="horizontal"-->
+        <!--            android:paddingTop="10dp"-->
+        <!--            android:paddingLeft="10dp"-->
+        <!--            android:paddingRight="10dp"-->
+        <!--            android:paddingBottom="10dp">-->
+
+        <!--            <Button-->
+        <!--                android:id="@+id/addPreset"-->
+        <!--                android:layout_width="150dp"-->
+        <!--                android:layout_height="50dp"-->
+        <!--                android:text="@string/newPreset" />-->
+        <!--        </LinearLayout>-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/preset_recycler"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
     </HorizontalScrollView>
+
+<!--    <Button-->
+<!--        android:id="@+id/addPreset"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="7dp"-->
+<!--        android:layout_marginBottom="10dp"-->
+<!--        android:text="Button"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/bottom_nav_bar"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/preset_scrollbar"-->
+<!--        app:layout_constraintVertical_bias="1.0" />-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,42 +5,42 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import android.content.Intent;
-import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
-import android.widget.Spinner;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.teamzcc.calender.CalenderAdapter;
+import com.example.teamzcc.preset.EditPresetDialogFragment;
+import com.example.teamzcc.preset.Preset;
+import com.example.teamzcc.preset.PresetAdapter;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Locale;
-import java.util.Set;
+import java.util.Objects;
 
 @RequiresApi(api = Build.VERSION_CODES.O)
-public class MainActivity extends AppCompatActivity implements CalenderAdapter.onItemListener, EditPresetDialogFragment.EditPresetDialogListener {
+public class MainActivity extends AppCompatActivity implements CalenderAdapter.onItemListener
+        , PresetAdapter.PresetClickListener
+        , EditPresetDialogFragment.EditPresetDialogListener {
 
     private TextView monthYearText;
     private RecyclerView calenderRecycleView;
     private LocalDate selectedDate;
 
     //preset attributes
-    private Set<Preset> presets = new HashSet<>();
+    private ArrayList<Preset> presets = new ArrayList<>();
+    private PresetAdapter presetAdapter;
+    private RecyclerView presetRecyclerView;
+
     //current display density
     private float DENSITY;
 
@@ -52,23 +52,17 @@ public class MainActivity extends AppCompatActivity implements CalenderAdapter.o
         initWidgets();
         selectedDate = LocalDate.now();//set the local date as now
         setMonthView();
-        //populates the preset bar on create, needs a permanent mean of storage in the future
-        DENSITY = getApplicationContext()
-                .getResources()
-                .getDisplayMetrics()
-                .density;
-        for (Preset p : presets) {
-            updatePresetBar(p);
-        }
 
-        //opens preset editor popup window, which is a dialog
-        Button addPresetButton = (Button) findViewById(R.id.addPreset);
-        addPresetButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                createPresetEditor();
-            }
-        });
+        //dummy presets for demonstration
+        presets.add(new Preset("new Preset", "gray"));
+        presets.add(new Preset("Work out", "red"));
+        presets.add(new Preset("Sleep", "blue"));
+        presets.add(new Preset("Shit", "yellow"));
+        presets.add(new Preset("Shopping at Lidl", "green"));
+        presets.add(new Preset("weird", "teal"));
+
+
+        setPresetBar();
     }
 
     //calender View Methods
@@ -128,40 +122,98 @@ public class MainActivity extends AppCompatActivity implements CalenderAdapter.o
     public void onItemClick(int position, String dayText) {
         //implement a function where we can zoom in for each date.
         String message = "Selected Date" + dayText + "" + monthYearFromDate(selectedDate);
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();//TODO//set the schedule
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();//TODO: set the schedule
+
     }
 
 
     //Preset related stuff below
     //creates preset editor and handles events that are delivered back
     // https://developer.android.com/guide/topics/ui/dialogs#PassingEvents
-    public void createPresetEditor() {
+    public void createPresetEditor(Preset currentPreset) {
         DialogFragment dialog = new EditPresetDialogFragment();
+        if (currentPreset != null) {
+            Bundle data = new Bundle();
+            data.putString("activity", currentPreset.getActivity());
+            data.putString("color", currentPreset.getColor());
+            dialog.setArguments(data);
+        }
         dialog.show(getSupportFragmentManager(), "edit preset");
     }
 
     @Override
-    public void onPresetCancelClick(EditPresetDialogFragment dialog) {
+    public void onPresetEditorCancelClick(EditPresetDialogFragment dialog) {
         dialog.dismiss();
     }
 
     @Override
-    public void onPresetSaveClick(EditPresetDialogFragment dialog) {
+    public void onPresetEditorSaveClick(EditPresetDialogFragment dialog) {
         Preset temp = dialog.tempPreset;
         presets.add(temp);
-        updatePresetBar(temp);
+        setPresetBar();
         dialog.dismiss();
     }
 
-    private void updatePresetBar(Preset p) {
-        LinearLayout.LayoutParams dimensions = new LinearLayout.LayoutParams((int)DENSITY*150, (int)DENSITY*50);
-        dimensions.setMargins((int)DENSITY*10,(int)DENSITY*10,(int)DENSITY*10,(int)DENSITY*10);
-        LinearLayout presetTopRow = (LinearLayout) findViewById(R.id.presetTopRow);
-//        LinearLayout presetBottomRow = (LinearLayout) findViewById(R.id.presetBottomRow);
-        Button newPreset = new Button(this);
-        newPreset.setLayoutParams(dimensions);
-        newPreset.setText(p.getActivity());
-        newPreset.setBackgroundColor(Color.parseColor(p.getColor().toLowerCase(Locale.ROOT)));
-        presetTopRow.addView(newPreset);
+    private void setPresetBar() {
+        presetRecyclerView = (RecyclerView) findViewById(R.id.preset_recycler);
+        presetAdapter = new PresetAdapter(presets, this);
+        presetRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.HORIZONTAL));
+        presetRecyclerView.setAdapter(presetAdapter);
+    }
+
+    @Override
+    public void onPresetClick(String text) {
+        if (Objects.equals(text, "new Preset")) {
+            createPresetEditor(null);
+        } else {
+            //TODO: for actual presets, clicking means choosing them
+        }
+    }
+
+    @Override
+    public boolean onPresetLongClick(View view, String text) {
+        if (Objects.equals(text, "new Preset")) {
+            return true;
+        } else {
+            //TODO: for actual presets, long clicking should call popup menu
+            popupPresetMenu(view, text);
+            return true;
+        }
+    }
+
+    private void popupPresetMenu(View view, String activity) {
+        PopupMenu menu = new PopupMenu(this, view);
+        menu.getMenuInflater().inflate(R.menu.menu_preset_longpress, menu.getMenu());
+        menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                if (menuItem.getItemId() == R.id.edit) {
+                    //undefined behaviour if there are multiple presets with the same name
+                    for (Preset p :
+                            presets) {
+                        if (p.getActivity().equals(activity)) {
+                            createPresetEditor(p);
+                            break;
+                        }
+                    }
+
+                    return true;
+                } else if (menuItem.getItemId() == R.id.delete) {
+                    //undefined behaviour if there are multiple presets with the same name
+                    for (Preset p :
+                            presets) {
+                        if (p.getActivity().equals(activity)) {
+                            presets.remove(p);
+                            break;
+                        }
+                    }
+                    setPresetBar();
+                    return true;
+                }
+                menu.dismiss();
+                return true;
+            }
+        });
+        menu.show();
     }
 }

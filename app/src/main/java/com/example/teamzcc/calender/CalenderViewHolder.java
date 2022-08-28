@@ -1,10 +1,12 @@
-package com.example.teamzcc;
+package com.example.teamzcc.calender;
 
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.teamzcc.R;
 
 //the real class of out view holder
 public class CalenderViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

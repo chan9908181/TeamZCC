@@ -3,6 +3,23 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/gongz/StudioProjects/TeamZCC/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3605" />
+        <entry key="..\:/Users/gongz/StudioProjects/TeamZCC/app/src/main/res/drawable/ic_baseline_calendar_today_24.xml" value="0.3605" />
+        <entry key="..\:/Users/gongz/StudioProjects/TeamZCC/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.3605" />
+        <entry key="..\:/Users/gongz/StudioProjects/TeamZCC/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.3605" />
+        <entry key="..\:/Users/gongz/StudioProjects/TeamZCC/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3605" />
+        <entry key="..\:/Users/gongz/StudioProjects/TeamZCC/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.3605" />
+        <entry key="..\:/Users/gongz/StudioProjects/TeamZCC/app/src/main/res/drawable/ic_social_24.xml" value="0.3605" />
+        <entry key="..\:/Users/gongz/StudioProjects/TeamZCC/app/src/main/res/drawable/ic_stat_24.xml" value="0.3605" />
+        <entry key="..\:/Users/gongz/StudioProjects/TeamZCC/app/src/main/res/drawable/rectangle.xml" value="0.3605" />
+        <entry key="..\:/Users/gongz/StudioProjects/TeamZCC/app/src/main/res/layout/activity_edit_preset.xml" value="0.29713552800342025" />
+        <entry key="..\:/Users/gongz/StudioProjects/TeamZCC/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/gongz/StudioProjects/TeamZCC/app/src/main/res/layout/calender_cell.xml" value="0.29713552800342025" />
+        <entry key="..\:/Users/gongz/StudioProjects/TeamZCC/app/src/main/res/layout/dialogue_edit_preset.xml" value="0.5" />
+        <entry key="..\:/Users/gongz/StudioProjects/TeamZCC/app/src/main/res/layout/menu_preset_longpress.xml" value="0.29628046173578454" />
+        <entry key="..\:/Users/gongz/StudioProjects/TeamZCC/app/src/main/res/layout/preset_box.xml" value="0.29628046173578454" />
+        <entry key="..\:/Users/gongz/StudioProjects/TeamZCC/app/src/main/res/menu/bottom_nav_menu.xml" value="0.29713552800342025" />
+        <entry key="..\:/Users/gongz/StudioProjects/TeamZCC/app/src/main/res/menu/menu_preset_longpress.xml" value="0.29628046173578454" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2564102564102564" />
         <entry key="app/src/main/res/drawable/border.xml" value="0.25052083333333336" />
         <entry key="app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.2564102564102564" />
