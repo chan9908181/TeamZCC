@@ -3,44 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/gongz/StudioProjects/TeamZCC/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3605" />
-        <entry key="..\:/Users/gongz/StudioProjects/TeamZCC/app/src/main/res/drawable/ic_baseline_calendar_today_24.xml" value="0.3605" />
-        <entry key="..\:/Users/gongz/StudioProjects/TeamZCC/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.3605" />
-        <entry key="..\:/Users/gongz/StudioProjects/TeamZCC/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.3605" />
-        <entry key="..\:/Users/gongz/StudioProjects/TeamZCC/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3605" />
-        <entry key="..\:/Users/gongz/StudioProjects/TeamZCC/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.3605" />
-        <entry key="..\:/Users/gongz/StudioProjects/TeamZCC/app/src/main/res/drawable/ic_social_24.xml" value="0.3605" />
-        <entry key="..\:/Users/gongz/StudioProjects/TeamZCC/app/src/main/res/drawable/ic_stat_24.xml" value="0.3605" />
-        <entry key="..\:/Users/gongz/StudioProjects/TeamZCC/app/src/main/res/drawable/rectangle.xml" value="0.3605" />
-        <entry key="..\:/Users/gongz/StudioProjects/TeamZCC/app/src/main/res/layout/activity_edit_preset.xml" value="0.29713552800342025" />
-        <entry key="..\:/Users/gongz/StudioProjects/TeamZCC/app/src/main/res/layout/activity_main.xml" value="0.33" />
-        <entry key="..\:/Users/gongz/StudioProjects/TeamZCC/app/src/main/res/layout/calender_cell.xml" value="0.29713552800342025" />
-        <entry key="..\:/Users/gongz/StudioProjects/TeamZCC/app/src/main/res/layout/dialogue_edit_preset.xml" value="0.5" />
-        <entry key="..\:/Users/gongz/StudioProjects/TeamZCC/app/src/main/res/layout/menu_preset_longpress.xml" value="0.29628046173578454" />
-        <entry key="..\:/Users/gongz/StudioProjects/TeamZCC/app/src/main/res/layout/preset_box.xml" value="0.29628046173578454" />
-        <entry key="..\:/Users/gongz/StudioProjects/TeamZCC/app/src/main/res/menu/bottom_nav_menu.xml" value="0.29713552800342025" />
-        <entry key="..\:/Users/gongz/StudioProjects/TeamZCC/app/src/main/res/menu/menu_preset_longpress.xml" value="0.29628046173578454" />
-        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.218" />
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2564102564102564" />
         <entry key="app/src/main/res/drawable/border.xml" value="0.25052083333333336" />
-        <entry key="app/src/main/res/drawable/ic_baseline_calendar_today_24.xml" value="0.218" />
-        <entry key="app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.218" />
-        <entry key="app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.218" />
-        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.218" />
-        <entry key="app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.218" />
-        <entry key="app/src/main/res/drawable/ic_social_24.xml" value="0.2015" />
-        <entry key="app/src/main/res/drawable/ic_stat_24.xml" value="0.2025" />
+        <entry key="app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.2564102564102564" />
+        <entry key="app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.2564102564102564" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2564102564102564" />
+        <entry key="app/src/main/res/drawable/ic_social_24.xml" value="0.2564102564102564" />
+        <entry key="app/src/main/res/drawable/ic_stat_24.xml" value="0.2564102564102564" />
         <entry key="app/src/main/res/drawable/rectangle.xml" value="0.25052083333333336" />
-        <entry key="app/src/main/res/layout/activity_edit_preset.xml" value="0.19479166666666667" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.22481334167003247" />
-        <entry key="app/src/main/res/layout/activity_social.xml" value="0.2128623188405797" />
-        <entry key="app/src/main/res/layout/activity_statistics.xml" value="0.24708404541015616" />
-        <entry key="app/src/main/res/layout/bottom_nav_menu.xml" value="0.1897644927536232" />
-        <entry key="app/src/main/res/layout/calender_cell.xml" value="0.19479166666666667" />
-        <entry key="app/src/main/res/layout/fragment_calendar.xml" value="0.27684255406476455" />
-        <entry key="app/src/main/res/layout/fragment_social.xml" value="0.1381340579710145" />
-        <entry key="app/src/main/res/layout/fragment_stat.xml" value="0.22205810546875002" />
-        <entry key="app/src/main/res/layout/preset_box.xml" value="0.2128623188405797" />
-        <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.31131905818331074" />
+        <entry key="app/src/main/res/layout/activity_edit_preset.xml" value="0.240625" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.28718546686020296" />
+        <entry key="app/src/main/res/layout/calender_cell.xml" value="0.234375" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.18518518518518517" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.18518518518518517" />
       </map>

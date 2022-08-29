@@ -22,7 +22,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.teamzcc.calender.CalenderAdapter;
-import com.example.teamzcc.databinding.ActivityMainBinding;
 import com.example.teamzcc.preset.EditPresetDialogFragment;
 import com.example.teamzcc.preset.Preset;
 import com.example.teamzcc.preset.PresetAdapter;
@@ -52,7 +51,6 @@ public class MainActivity extends AppCompatActivity implements CalenderAdapter.o
     //current display density
     private float DENSITY;
 
-    ActivityMainBinding binding;
 
 
     @Override
