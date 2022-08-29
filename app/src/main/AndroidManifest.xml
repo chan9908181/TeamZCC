@@ -10,13 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TeamZCC">
         <activity
-            android:name=".Social"
+            android:name=".activity.SocialActivity"
             android:exported="false" />
         <activity
-            android:name=".Statistics"
+            android:name=".activity.StatisticsActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.CalenderActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

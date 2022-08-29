@@ -1,4 +1,4 @@
-package com.example.teamzcc;
+package com.example.teamzcc.activity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -21,6 +20,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.teamzcc.R;
 import com.example.teamzcc.calender.CalenderAdapter;
 import com.example.teamzcc.preset.EditPresetDialogFragment;
 import com.example.teamzcc.preset.Preset;
@@ -35,7 +35,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 @RequiresApi(api = Build.VERSION_CODES.O)
-public class MainActivity extends AppCompatActivity implements CalenderAdapter.onItemListener
+public class CalenderActivity extends AppCompatActivity implements CalenderAdapter.onItemListener
         , PresetAdapter.PresetClickListener
         , EditPresetDialogFragment.EditPresetDialogListener {
 
@@ -48,8 +48,6 @@ public class MainActivity extends AppCompatActivity implements CalenderAdapter.o
     private PresetAdapter presetAdapter;
     private RecyclerView presetRecyclerView;
 
-    //current display density
-    private float DENSITY;
 
 
 
@@ -80,14 +78,14 @@ public class MainActivity extends AppCompatActivity implements CalenderAdapter.o
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.navigation_statistics:
-                        startActivity(new Intent(getApplicationContext(), Statistics.class));
+                        startActivity(new Intent(getApplicationContext(), StatisticsActivity.class));
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.navigation_calendar:
                         return true;
 
                     case R.id.navigation_social:
-                        startActivity(new Intent(getApplicationContext(), Social.class));
+                        startActivity(new Intent(getApplicationContext(), SocialActivity.class));
                         overridePendingTransition(0,0);
                         return true;
                 }

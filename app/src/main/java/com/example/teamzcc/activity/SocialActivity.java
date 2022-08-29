@@ -1,4 +1,4 @@
-package com.example.teamzcc;
+package com.example.teamzcc.activity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -9,34 +9,35 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.teamzcc.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-@RequiresApi(api = Build.VERSION_CODES.O)
-public class Statistics extends AppCompatActivity {
+public class SocialActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_statistics);
+        setContentView(R.layout.activity_social);
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_nav_bar);
-        bottomNavigationView.setSelectedItemId(R.id.navigation_statistics);
+        bottomNavigationView.setSelectedItemId(R.id.navigation_social);
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.navigation_calendar:
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        startActivity(new Intent(getApplicationContext(), CalenderActivity.class));
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.navigation_statistics:
+                        startActivity(new Intent(getApplicationContext(), StatisticsActivity.class));
+                        overridePendingTransition(0,0);
                         return true;
 
                     case R.id.navigation_social:
-                        startActivity(new Intent(getApplicationContext(), Social.class));
-                        overridePendingTransition(0,0);
                         return true;
                 }
 
