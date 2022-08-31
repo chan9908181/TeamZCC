@@ -32,6 +32,7 @@ import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Objects;
 
 @RequiresApi(api = Build.VERSION_CODES.O)
@@ -48,6 +49,8 @@ public class CalenderActivity extends AppCompatActivity implements CalenderAdapt
     private PresetAdapter presetAdapter;
     private RecyclerView presetRecyclerView;
 
+    public static final String DATE="com.example.teamzcc.example.DAY_TEXT";
+    public static final String DAY="com.example.teamzcc.example.DAY";
 
 
 
@@ -163,9 +166,12 @@ public class CalenderActivity extends AppCompatActivity implements CalenderAdapt
 
     @Override
     public void onItemClick(int position, String dayText) {
-        //implement a function where we can zoom in for each date.
-        String message = "Selected Date" + dayText + "" + monthYearFromDate(selectedDate);
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();//TODO: set the schedule
+        Intent intent=new Intent(getApplicationContext(),DayActivity.class);
+        String date=dayText+"."+selectedDate.getMonthValue()+"."+selectedDate.getYear();
+        intent.putExtra(DATE,date);
+        LocalDate dayOfMonth=LocalDate.of(selectedDate.getYear(),selectedDate.getMonthValue(),position);
+        intent.putExtra(DAY,dayOfMonth.getDayOfWeek().toString());
+        startActivity(intent);
 
     }
 
