@@ -12,10 +12,11 @@
         <entry key="app/src/main/res/drawable/ic_social_24.xml" value="0.2564102564102564" />
         <entry key="app/src/main/res/drawable/ic_stat_24.xml" value="0.2564102564102564" />
         <entry key="app/src/main/res/drawable/rectangle.xml" value="0.25052083333333336" />
-        <entry key="app/src/main/res/layout/activity_day.xml" value="0.21129913330078115" />
+        <entry key="app/src/main/res/layout/activity_day.xml" value="0.18297101449275363" />
         <entry key="app/src/main/res/layout/activity_edit_preset.xml" value="0.240625" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_social.xml" value="0.13179347826086957" />
+        <entry key="app/src/main/res/layout/activity_square_splash.xml" value="0.1" />
         <entry key="app/src/main/res/layout/calender_cell.xml" value="0.234375" />
         <entry key="app/src/main/res/layout/circle.xml" value="0.13179347826086957" />
         <entry key="app/src/main/res/layout/item_cell_day.xml" value="0.23125" />
