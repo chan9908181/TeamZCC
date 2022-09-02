@@ -1,7 +1,5 @@
 package com.example.teamzcc.preset;
 
-import android.util.Pair;
-
 public class Preset {
     static int count = 0;
     private String activity;
@@ -48,4 +46,9 @@ public class Preset {
         return position;
     }
 
+    public boolean equals(Preset other){
+        if (this.getActivity().equals(other.getActivity()) && this.getColor().equals(other.getColor())){
+            return true;
+        } else return false;
+    }
 }

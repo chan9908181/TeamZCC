@@ -18,7 +18,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.teamzcc.R;
 import com.example.teamzcc.calender.CalenderAdapter;
@@ -32,7 +31,6 @@ import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Objects;
 
 @RequiresApi(api = Build.VERSION_CODES.O)
@@ -49,9 +47,8 @@ public class CalenderActivity extends AppCompatActivity implements CalenderAdapt
     private PresetAdapter presetAdapter;
     private RecyclerView presetRecyclerView;
 
-    public static final String DATE="com.example.teamzcc.example.DAY_TEXT";
-    public static final String DAY="com.example.teamzcc.example.DAY";
-
+    public static final String DATE = "com.example.teamzcc.example.DAY_TEXT";
+    public static final String DAY = "com.example.teamzcc.example.DAY";
 
 
     @Override
@@ -82,14 +79,14 @@ public class CalenderActivity extends AppCompatActivity implements CalenderAdapt
                 switch (item.getItemId()) {
                     case R.id.navigation_statistics:
                         startActivity(new Intent(getApplicationContext(), StatisticsActivity.class));
-                        overridePendingTransition(0,0);
+                        overridePendingTransition(0, 0);
                         return true;
                     case R.id.navigation_calendar:
                         return true;
 
                     case R.id.navigation_social:
                         startActivity(new Intent(getApplicationContext(), SocialActivity.class));
-                        overridePendingTransition(0,0);
+                        overridePendingTransition(0, 0);
                         return true;
                 }
 
@@ -101,14 +98,13 @@ public class CalenderActivity extends AppCompatActivity implements CalenderAdapt
 
 
     //for fragments in switching between the bottom nagivation bars
-    private void replaceFragment(Fragment fragment){
+    private void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.linearLayout2, fragment);
         fragmentTransaction.commit();
 
     }
-
 
 
     //calender View Methods
@@ -166,11 +162,11 @@ public class CalenderActivity extends AppCompatActivity implements CalenderAdapt
 
     @Override
     public void onItemClick(int position, String dayText) {
-        Intent intent=new Intent(getApplicationContext(),DayActivity.class);
-        String date=dayText+"."+selectedDate.getMonthValue()+"."+selectedDate.getYear();
-        intent.putExtra(DATE,date);
-        LocalDate dayOfMonth=LocalDate.of(selectedDate.getYear(),selectedDate.getMonthValue(),position);
-        intent.putExtra(DAY,dayOfMonth.getDayOfWeek().toString());
+        Intent intent = new Intent(getApplicationContext(), DayActivity.class);
+        String date = dayText + "." + selectedDate.getMonthValue() + "." + selectedDate.getYear();
+        intent.putExtra(DATE, date);
+        LocalDate dayOfMonth = LocalDate.of(selectedDate.getYear(), selectedDate.getMonthValue(), position);
+        intent.putExtra(DAY, dayOfMonth.getDayOfWeek().toString());
         startActivity(intent);
 
     }
@@ -181,8 +177,8 @@ public class CalenderActivity extends AppCompatActivity implements CalenderAdapt
     // https://developer.android.com/guide/topics/ui/dialogs#PassingEvents
     public void createPresetEditor(Preset currentPreset) {
         DialogFragment dialog = new EditPresetDialogFragment();
+        Bundle data = new Bundle();
         if (currentPreset != null) {
-            Bundle data = new Bundle();
             data.putString("activity", currentPreset.getActivity());
             data.putString("color", currentPreset.getColor());
             dialog.setArguments(data);
@@ -197,8 +193,19 @@ public class CalenderActivity extends AppCompatActivity implements CalenderAdapt
 
     @Override
     public void onPresetEditorSaveClick(EditPresetDialogFragment dialog) {
-        Preset temp = dialog.tempPreset;
-        presets.add(temp);
+        Preset newPreset = dialog.getNewPreset();
+        Boolean edited = dialog.getEdited();
+        if (edited) {
+            Preset oldPreset = dialog.getOldPreset();
+            for (int i = 0; i< presets.size(); i++) {
+                Preset p = presets.get(i);
+                if (p.equals(oldPreset)) {
+                    presets.set(i, newPreset);
+                    break;
+                }
+            }
+        }else {
+        presets.add(newPreset);}
         setPresetBar();
         dialog.dismiss();
     }
@@ -238,8 +245,7 @@ public class CalenderActivity extends AppCompatActivity implements CalenderAdapt
             public boolean onMenuItemClick(MenuItem menuItem) {
                 if (menuItem.getItemId() == R.id.edit) {
                     //undefined behaviour if there are multiple presets with the same name
-                    for (Preset p :
-                            presets) {
+                    for (Preset p : presets) {
                         if (p.getActivity().equals(activity)) {
                             createPresetEditor(p);
                             break;
@@ -249,8 +255,7 @@ public class CalenderActivity extends AppCompatActivity implements CalenderAdapt
                     return true;
                 } else if (menuItem.getItemId() == R.id.delete) {
                     //undefined behaviour if there are multiple presets with the same name
-                    for (Preset p :
-                            presets) {
+                    for (Preset p : presets) {
                         if (p.getActivity().equals(activity)) {
                             presets.remove(p);
                             break;

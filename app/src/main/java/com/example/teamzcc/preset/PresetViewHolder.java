@@ -1,15 +1,12 @@
 package com.example.teamzcc.preset;
 
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.teamzcc.R;
-
-import org.w3c.dom.Text;
 
 public class PresetViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener{
 
@@ -23,7 +20,6 @@ public class PresetViewHolder extends RecyclerView.ViewHolder implements View.On
         itemView.setOnClickListener(this);
         itemView.setOnLongClickListener(this);
     }
-
 
     @Override
     public void onClick(View view) {
