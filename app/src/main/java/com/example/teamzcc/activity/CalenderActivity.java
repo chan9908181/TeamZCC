@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -58,6 +59,7 @@ public class CalenderActivity extends AppCompatActivity implements CalenderAdapt
         initWidgets();
         selectedDate = LocalDate.now();//set the local date as now
         setMonthView();
+
 
         //dummy presets for demonstration
         presets.add(new Preset("new Preset", "gray"));
@@ -112,6 +114,34 @@ public class CalenderActivity extends AppCompatActivity implements CalenderAdapt
         //find our views with the ID
         calenderRecycleView = findViewById(R.id.calenderRecyclerView);
         monthYearText = findViewById(R.id.monthYearTV);
+        ItemTouchHelper.SimpleCallback simpleCallback1 = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                selectedDate = selectedDate.minusMonths(1);
+                setMonthView();
+            }
+        };
+        ItemTouchHelper itemTouchHelper1 = new ItemTouchHelper(simpleCallback1);
+        itemTouchHelper1.attachToRecyclerView(calenderRecycleView);
+        ItemTouchHelper.SimpleCallback simpleCallback2 = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                selectedDate = selectedDate.plusMonths(1);
+                setMonthView();
+            }
+        };
+        ItemTouchHelper itemTouchHelper2 = new ItemTouchHelper(simpleCallback2);
+        itemTouchHelper2.attachToRecyclerView(calenderRecycleView);
     }
 
     private void setMonthView() {

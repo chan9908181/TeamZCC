@@ -1,8 +1,10 @@
 package com.example.teamzcc.activity;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -19,6 +21,9 @@ import com.example.teamzcc.squareCell.GridAdapter;
 import com.example.teamzcc.squareCell.OnCellClickListener;
 import com.example.teamzcc.squareCell.SquareGrid;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 @RequiresApi(api = Build.VERSION_CODES.O)
 public class DayActivity extends AppCompatActivity implements OnCellClickListener {
     private static final String TAG = "DayActivity";
@@ -33,11 +38,11 @@ public class DayActivity extends AppCompatActivity implements OnCellClickListene
         setContentView(R.layout.activity_day);
 
         Intent intent=getIntent();
-        String date=intent.getStringExtra(CalenderActivity.DATE);
+        final String[] date = {intent.getStringExtra(CalenderActivity.DATE)};
         String dayOfMonth=intent.getStringExtra(CalenderActivity.DAY);
 
         TextView textView=findViewById(R.id.dayTextView);
-        textView.setText(date);
+        textView.setText(date[0]);
         TextView textView1=findViewById(R.id.dayOfMonth);
         textView1.setText(dayOfMonth.substring(0,3));
 
@@ -57,10 +62,54 @@ public class DayActivity extends AppCompatActivity implements OnCellClickListene
         gridAdapter=new GridAdapter(squareGrid.getCells(),this);
         gridRecyclerView.setAdapter(gridAdapter);
 
+        ItemTouchHelper.SimpleCallback simpleCallback1 = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                String[] array=date[0].split("\\.");
+;               int day=Integer.parseInt(array[0]);
+                int month=Integer.parseInt(array[1]);
+                int year=Integer.parseInt(array[2]);
+                LocalDate newDate= LocalDate.of(year,month,day);
+                newDate=newDate.plusDays(1);
+                date[0] = newDate.getDayOfMonth() + "." + newDate.getMonthValue() + "." + newDate.getYear();
+                textView.setText(date[0]);
+                textView1.setText(newDate.getDayOfWeek().toString().substring(0,3));
+            }
+        };
+        ItemTouchHelper itemTouchHelper1 = new ItemTouchHelper(simpleCallback1);
+        itemTouchHelper1.attachToRecyclerView(gridRecyclerView);
+        ItemTouchHelper.SimpleCallback simpleCallback2 = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                String[] array=date[0].split("\\.");
+                ;               int day=Integer.parseInt(array[0]);
+                int month=Integer.parseInt(array[1]);
+                int year=Integer.parseInt(array[2]);
+                LocalDate newDate= LocalDate.of(year,month,day);
+                newDate=newDate.minusDays(1);
+                date[0]= newDate.getDayOfMonth() + "." + newDate.getMonthValue() + "." + newDate.getYear();
+                textView.setText(date[0]);
+                textView1.setText(newDate.getDayOfWeek().toString().substring(0,3));
+
+            }
+        };
+        ItemTouchHelper itemTouchHelper2 = new ItemTouchHelper(simpleCallback2);
+        itemTouchHelper2.attachToRecyclerView(gridRecyclerView);
     }
 
     @Override
     public void onCellClick(Cell cell) {
         Toast.makeText(getApplicationContext(),"Cell clicked",Toast.LENGTH_SHORT).show();
+        //TODO
     }
 }

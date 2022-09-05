@@ -19,7 +19,7 @@
             android:name=".activity.StatisticsActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.SquareSplashActivity"
+            android:name=".activity.CalenderActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,7 +27,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.CalenderActivity"
+        <activity android:name=".activity.SquareSplashActivity"
             android:exported="false"/>
     </application>
 
