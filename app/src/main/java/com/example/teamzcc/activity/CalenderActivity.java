@@ -195,7 +195,7 @@ public class CalenderActivity extends AppCompatActivity implements CalenderAdapt
         Intent intent = new Intent(getApplicationContext(), DayActivity.class);
         String date = dayText + "." + selectedDate.getMonthValue() + "." + selectedDate.getYear();
         intent.putExtra(DATE, date);
-        LocalDate dayOfMonth = LocalDate.of(selectedDate.getYear(), selectedDate.getMonthValue(), position);
+        LocalDate dayOfMonth = LocalDate.of(selectedDate.getYear(), selectedDate.getMonthValue(), Integer.parseInt(dayText));
         intent.putExtra(DAY, dayOfMonth.getDayOfWeek().toString());
         startActivity(intent);
 

@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TeamZCC">
         <activity
+            android:name=".activity.CalenderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.RegisterUserActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.DayActivity"
             android:exported="false" />
         <activity
@@ -19,7 +25,7 @@
             android:name=".activity.StatisticsActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.CalenderActivity"
+            android:name=".activity.LogInActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,9 +33,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.SquareSplashActivity"
-            android:exported="false"/>
+        <activity
+            android:name=".activity.SquareSplashActivity"
+            android:exported="false" />
     </application>
-
 
 </manifest>
