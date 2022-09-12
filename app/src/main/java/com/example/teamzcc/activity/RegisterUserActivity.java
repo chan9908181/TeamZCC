@@ -1,10 +1,13 @@
 package com.example.teamzcc.activity;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -113,13 +116,16 @@ public class RegisterUserActivity extends AppCompatActivity implements View.OnCl
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if(task.isSuccessful()){
                                                 Toast.makeText(RegisterUserActivity.this,"User has been registered successfully!",Toast.LENGTH_LONG).show();
+                                                startActivity(new Intent(RegisterUserActivity.this,LogInActivity.class));
                                             }else{
+
                                                 Toast.makeText(RegisterUserActivity.this,"Failed to register! Try Again",Toast.LENGTH_LONG).show();
                                             }
                                             progressBar.setVisibility(View.GONE);
                                         }
                                     });
-                        }else{
+                         }else{
+                            Log.e(TAG, "onComplete: Failed=" + task.getException().getMessage());
                             Toast.makeText(RegisterUserActivity.this,"Failed to register! Try Again",Toast.LENGTH_LONG).show();
                             progressBar.setVisibility(View.GONE);
                         }
