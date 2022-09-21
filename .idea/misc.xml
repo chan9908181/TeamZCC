@@ -15,8 +15,9 @@
         <entry key="app/src/main/res/drawable/ic_stat_24.xml" value="0.2564102564102564" />
         <entry key="app/src/main/res/drawable/rectangle.xml" value="0.25052083333333336" />
         <entry key="app/src/main/res/layout/activity_edit_preset.xml" value="0.240625" />
-        <entry key="app/src/main/res/layout/activity_log_in.xml" value="0.2484375" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_log_in.xml" value="0.12223968505859376" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.5268630849220104" />
+        <entry key="app/src/main/res/layout/activity_password.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_register_user.xml" value="0.18548387096774194" />
         <entry key="app/src/main/res/layout/activity_social.xml" value="0.13179347826086957" />
         <entry key="app/src/main/res/layout/calender_cell.xml" value="0.234375" />
