@@ -7,6 +7,7 @@ public class Preset {
     //total time spent on the preset's activity represented in number of time units
     private long totalTime;
     private int position;
+    private boolean selected;
 
     public Preset(String activity, String color) {
         this.activity = activity;
@@ -44,6 +45,14 @@ public class Preset {
 
     public int getPosition() {
         return position;
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
     }
 
     public boolean equals(Preset other){

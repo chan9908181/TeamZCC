@@ -13,7 +13,7 @@
             android:name=".activity.PasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.CalenderActivity"
+            android:name=".activity.LogInActivity"
             android:exported="false" />
         <activity
             android:name=".activity.RegisterUserActivity"
@@ -28,7 +28,7 @@
             android:name=".activity.StatisticsActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.LogInActivity"
+            android:name=".activity.CalenderActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

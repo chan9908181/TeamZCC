@@ -2,7 +2,9 @@ package com.example.teamzcc.preset;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+//import android.app.DialogFragment;
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +14,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.teamzcc.R;
@@ -34,7 +37,7 @@ public class EditPresetDialogFragment extends DialogFragment {
     }
 
     //Interface required to pass the event in the dialog back to its host
-    // https://developer.android.com/guide/topics/ui/dialogs#PassingEvents
+    //https://developer.android.com/guide/topics/ui/dialogs#PassingEvents
     public interface EditPresetDialogListener {
         public void onPresetEditorCancelClick(EditPresetDialogFragment dialog);
 
@@ -59,6 +62,7 @@ public class EditPresetDialogFragment extends DialogFragment {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -76,7 +80,7 @@ public class EditPresetDialogFragment extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         //creates the view for the popup window
-        LayoutInflater inflater = this.getLayoutInflater();
+        LayoutInflater inflater = getLayoutInflater();
         View presetEditorView = inflater.inflate(R.layout.dialogue_edit_preset, null);
         builder.setView(presetEditorView);
         //set text of activity field if editing

@@ -3,6 +3,9 @@ package com.example.teamzcc.activity;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.dynamicanimation.animation.FloatPropertyCompat;
+import androidx.dynamicanimation.animation.SpringAnimation;
+import androidx.dynamicanimation.animation.SpringForce;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -47,6 +50,8 @@ public class CalenderActivity extends AppCompatActivity implements CalenderAdapt
     private ArrayList<Preset> presets = new ArrayList<>();
     private PresetAdapter presetAdapter;
     private RecyclerView presetRecyclerView;
+    private Preset selectedPreset;
+    private int selectedPresetPosition;
 
     public static final String DATE = "com.example.teamzcc.example.DAY_TEXT";
     public static final String DAY = "com.example.teamzcc.example.DAY";
@@ -227,15 +232,16 @@ public class CalenderActivity extends AppCompatActivity implements CalenderAdapt
         Boolean edited = dialog.getEdited();
         if (edited) {
             Preset oldPreset = dialog.getOldPreset();
-            for (int i = 0; i< presets.size(); i++) {
+            for (int i = 0; i < presets.size(); i++) {
                 Preset p = presets.get(i);
                 if (p.equals(oldPreset)) {
                     presets.set(i, newPreset);
                     break;
                 }
             }
-        }else {
-        presets.add(newPreset);}
+        } else {
+            presets.add(newPreset);
+        }
         setPresetBar();
         dialog.dismiss();
     }
@@ -250,18 +256,59 @@ public class CalenderActivity extends AppCompatActivity implements CalenderAdapt
     @Override
     public void onPresetClick(String text) {
         if (Objects.equals(text, "new Preset")) {
+            //short clicking new preset opens the preset editor to create a new preset
             createPresetEditor(null);
         } else {
-            //TODO: for actual presets, clicking means choosing them
+            //for actual presets, clicking means choosing them
+            int count = 0;
+            for (Preset p : presets) {
+                if (p.getActivity().equals(text)) {
+                    //if the clicked preset has already been selected, reverse the selection so that nothing is selected
+                    if (selectedPreset != null && p.getActivity().equals(selectedPreset.getActivity())) {
+                        RecyclerView.ViewHolder view = ((RecyclerView) findViewById(R.id.preset_recycler)).findViewHolderForAdapterPosition(selectedPresetPosition);
+                        resizePreset(view.itemView, SpringAnimation.SCALE_X, 1f).start();
+                        resizePreset(view.itemView, SpringAnimation.SCALE_Y, 1f).start();
+                        selectedPreset = null;
+                        selectedPresetPosition = -1;
+                        break;
+                    }
+                    //if no preset is currently selected, select the one that was clicked
+                    if (selectedPreset == null) {
+                        selectedPreset = p;
+                        selectedPresetPosition = count;
+                        RecyclerView.ViewHolder view = ((RecyclerView) findViewById(R.id.preset_recycler)).findViewHolderForAdapterPosition(selectedPresetPosition);
+                        resizePreset(view.itemView, SpringAnimation.SCALE_X, 0.8f).start();
+                        resizePreset(view.itemView, SpringAnimation.SCALE_Y, 0.8f).start();
+                        break;
+                    }
+                    //if there is a already selected preset and another one is clicked, unselect the old one and select the new one
+                    if (selectedPreset != null && !p.getActivity().equals(selectedPreset.getActivity())) {
+                        RecyclerView.ViewHolder view = ((RecyclerView) findViewById(R.id.preset_recycler)).findViewHolderForAdapterPosition(selectedPresetPosition);
+                        resizePreset(view.itemView, SpringAnimation.SCALE_X, 1f).start();
+                        resizePreset(view.itemView, SpringAnimation.SCALE_Y, 1f).start();
+                        selectedPreset = p;
+                        selectedPresetPosition = count;
+                        view = ((RecyclerView) findViewById(R.id.preset_recycler)).findViewHolderForAdapterPosition(selectedPresetPosition);
+                        resizePreset(view.itemView, SpringAnimation.SCALE_X, 0.8f).start();
+                        resizePreset(view.itemView, SpringAnimation.SCALE_Y, 0.8f).start();
+                        break;
+                    }
+                    break;
+                } else {
+                    ++count;
+                }
+            }
         }
     }
+
 
     @Override
     public boolean onPresetLongClick(View view, String text) {
         if (Objects.equals(text, "new Preset")) {
+            //long clicking new preset does nothing
             return true;
         } else {
-            //TODO: for actual presets, long clicking should call popup menu
+            //for actual presets, long clicking should call popup menu
             popupPresetMenu(view, text);
             return true;
         }
@@ -300,4 +347,37 @@ public class CalenderActivity extends AppCompatActivity implements CalenderAdapt
         });
         menu.show();
     }
+
+    private SpringAnimation resizePreset(View view, FloatPropertyCompat<View> springAnimationType, Float finalPosition) {
+        SpringAnimation animation = new SpringAnimation(view, springAnimationType);
+        SpringForce spring = new SpringForce();
+        spring.setFinalPosition(finalPosition);
+        animation.setSpring(spring);
+        return animation;
+    }
+    //https://medium.com/@anitaa_1990/android-how-to-change-the-height-of-a-view-using-animation-9aad81369781
+//    public static void slideView(View view,
+//                                 int currentHeight,
+//                                 int newHeight) {
+//
+//        ValueAnimator slideAnimator = ValueAnimator
+//                .ofInt(currentHeight, newHeight)
+//                .setDuration(500);
+//
+//        /* We use an update listener which listens to each tick
+//         * and manually updates the height of the view  */
+//
+//        slideAnimator.addUpdateListener(animation1 -> {
+//            Integer value = (Integer) animation1.getAnimatedValue();
+//            view.getLayoutParams().height = value.intValue();
+//            view.requestLayout();
+//        });
+//
+//        /*  We use an animationSet to play the animation  */
+//
+//        AnimatorSet animationSet = new AnimatorSet();
+//        animationSet.setInterpolator(new AccelerateDecelerateInterpolator());
+//        animationSet.play(slideAnimator);
+//        animationSet.start();
+
 }
